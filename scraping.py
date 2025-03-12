@@ -59,7 +59,7 @@ def save_to_csv(data, filename):
     
     print(f"Hasil scraping telah disimpan di {filename}")
 
-if __name__ == "_main_":
+if __name__ == "__main__":
     base_url = "https://lib.ui.ac.id/daftikol2?id=102"
     results = scrape_ui_library(base_url, total_titles=100)
 
