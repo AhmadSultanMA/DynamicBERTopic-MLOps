@@ -8,17 +8,17 @@
 
 ## 📌 About
 
-**DynamicBERTopic-MLOps** adalah proyek yang mengintegrasikan **BERTopic** dengan **MLOps** untuk melakukan **topic modeling** secara dinamis. Proyek ini bertujuan untuk menerapkan **BERTopic** dalam pipeline yang dapat di-deploy, di-monitor, dan diperbarui secara otomatis.
+**DynamicBERTopic-MLOps** is a project that integrates **BERTopic** with **MLOps** to perform dynamic topic modeling. This project aims to implement **BERTopic** in a pipeline that can be deployed, monitored, and automatically updated.
 
 ## 📂 File Structure
 
 📦 **Repository**
 
 ```
-├───preprocessing.py
-├───scraping.py  
-├───hasil-preprocessing
-└───hasil-scraping
+├───📜 scraping.py # Main script for data scraping
+├───📜 preprocessing.py # Script for cleaning and processing data
+├───📁 hasil-scraping # Scraping results in CSV format
+└───📁 hasil-preprocessing # Preprocessing results after data cleaning
 
 ```
 
@@ -30,19 +30,19 @@
     cd DynamicBERTopic-MLOps
     ```
 
-2. **Instal Dependensi yang Diperlukan**
+2. **Install Required Depedencies**
 
     ```bash
     pip install requests beautifulsoup4
     ```
     
-3. **Jalankan scraping.py**
+3. **Run scraping.py**
    
     ```bash
     python scraping.py
     ```
 
-4. **Jalankan preprocessing.py**
+4. **Run preprocessing.py**
    
     ```bash
     python preprocessing.py
@@ -50,8 +50,8 @@
 
 ## 📌 Feature
 
-✅ Scraping koleksi perpustakaan UI
+✅ Scraping UI library collections
 
-✅ Pembersihan data dari karakter tidak perlu
+✅ Cleaning data from unnecessary characters
 
-✅ Penyimpanan data dalam format CSV
+✅ Storing data in CSV format
