@@ -9,7 +9,6 @@
 📦 **Repository**
 
 ```
-├───.venv
 ├───preprocessing.py
 ├───scraping.py  
 ├───hasil-preprocessing
