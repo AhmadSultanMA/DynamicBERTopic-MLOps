@@ -22,5 +22,7 @@
 ## 📌 Fitur
 
 ✅ Scraping koleksi perpustakaan UI
+
 ✅ Pembersihan data dari karakter tidak perlu
+
 ✅ Penyimpanan data dalam format CSV
