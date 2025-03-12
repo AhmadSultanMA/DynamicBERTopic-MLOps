@@ -12,8 +12,6 @@
 
 ## 📂 File Structure
 
-📦 **Repository**
-
 ```
 ├───📜 scraping.py # Main script for data scraping
 ├───📜 preprocessing.py # Script for cleaning and processing data
