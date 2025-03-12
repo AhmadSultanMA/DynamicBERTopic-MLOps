@@ -8,15 +8,14 @@
 
 📦 **Repository**
 
-├── 📁 hasil-scraping         # Hasil scraping dalam bentuk CSV
+```
+├───.venv
+├───preprocessing.py
+├───scraping.py  
+├───hasil-preprocessing
+└───hasil-scraping
 
-├── 📁 hasil-preprocessing    # Hasil preprocessing setelah data dibersihkan
-
-├── 📜 README.md              # Dokumentasi proyek
-
-├── 📜 scraping.py            # Skrip utama untuk scraping data
-
-├── 📜 preprocessing.py       # Skrip untuk membersihkan dan memproses data
+```
 
 ## 🔧 Cara Menggunakan
 1. Pastikan memiliki depedensi
