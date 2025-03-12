@@ -7,10 +7,15 @@
 ## 📂 Struktur Folder
 
 📦 **Repository**
+
 ├── 📁 hasil-scraping         # Hasil scraping dalam bentuk CSV
+
 ├── 📁 hasil-preprocessing    # Hasil preprocessing setelah data dibersihkan
+
 ├── 📜 README.md              # Dokumentasi proyek
+
 ├── 📜 scraping.py            # Skrip utama untuk scraping data
+
 ├── 📜 preprocessing.py       # Skrip untuk membersihkan dan memproses data
 
 ## 🔧 Cara Menggunakan
