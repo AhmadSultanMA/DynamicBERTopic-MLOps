@@ -1,6 +1,7 @@
 import os
 import requests
 import csv
+import time
 from bs4 import BeautifulSoup
 
 def scrape_ui_library(base_url, total_titles=100, step=10):
@@ -11,20 +12,26 @@ def scrape_ui_library(base_url, total_titles=100, step=10):
     titles = []
     for start in range(0, total_titles, step):
         url = f"{base_url}&start={start}&lokasi=lokal"
-        response = requests.get(url, headers=headers)
 
-        if response.status_code == 200:
-            soup = BeautifulSoup(response.text, 'html.parser')
-            
-            for item in soup.find_all('div', class_='judul-koleksi'):
-                title = item.find('a').text.strip()
+        try:
+            response = requests.get(url, headers=headers, timeout=10)
+            response.raise_for_status()
+        except requests.exceptions.RequestException as e:
+            print(f"Error mengambil halaman {url}: {e}")
+            continue
+
+        soup = BeautifulSoup(response.text, 'html.parser')
+        
+        for item in soup.find_all('div', class_='judul-koleksi'):
+            title_tag = item.find('a')
+            if title_tag:
+                title = title_tag.text.strip()
                 titles.append(title)
                 
                 if len(titles) >= total_titles:
                     return titles
-        else:
-            print(f"Gagal mengakses halaman {url}. Kode status: {response.status_code}")
-            break
+
+        time.sleep(1)  # Delay untuk menghindari blocking
 
     return titles
 
@@ -41,7 +48,7 @@ def save_to_csv(data, filename):
 
 if __name__ == "__main__":
     base_url = "https://lib.ui.ac.id/daftikol2?id=102"
-    results = scrape_ui_library(base_url, total_titles=100)
+    results = scrape_ui_library(base_url, total_titles=1000)
 
     if results:
-        save_to_csv(results, "hasil-scraping/judul.csv")
+        save_to_csv(results, "data/scrape/judul.csv")
