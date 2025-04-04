@@ -1,0 +1,17 @@
+# Gunakan Python image
+FROM python:3.9
+
+# Set work directory ke services/
+WORKDIR /app
+
+# Copy semua file dalam folder services
+COPY . .
+
+# Install dependencies
+RUN pip install fastapi uvicorn requests beautifulsoup4
+
+# Expose port
+EXPOSE 8000
+
+# Jalankan aplikasi
+CMD ["uvicorn", "scraping_service:app", "--host", "0.0.0.0", "--port", "8000"]
