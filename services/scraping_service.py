@@ -4,11 +4,14 @@ import requests
 import csv
 import time
 from bs4 import BeautifulSoup
+from dotenv import load_dotenv 
+
+load_dotenv()
 
 app = FastAPI()
 
-BASE_URL = "https://lib.ui.ac.id/daftikol2?id=102"
-SCRAPED_FILE = "data/scrape/judul.csv"
+BASE_URL = os.getenv("BASE_URL")
+SCRAPED_FILE = os.getenv("SCRAPED_FILE")
 
 def scrape_ui_library(base_url, total_titles=100, step=10):
     headers = {"User-Agent": "Mozilla/5.0"}
