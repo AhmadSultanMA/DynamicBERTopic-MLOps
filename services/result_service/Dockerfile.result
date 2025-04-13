@@ -1,0 +1,14 @@
+# Gunakan base image Python
+FROM python:3.12
+
+# Set working directory
+WORKDIR /app
+
+# Salin semua file ke dalam container
+COPY . /app
+
+# Install dependensi
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Jalankan FastAPI dengan Uvicorn
+CMD ["uvicorn", "result_service:app", "--host", "0.0.0.0", "--port", "8001", "--reload"]
