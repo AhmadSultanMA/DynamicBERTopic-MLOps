@@ -1,0 +1,20 @@
+services:
+  scraping_service:
+    build:
+      context: ./services/scraping_service
+      dockerfile: Dockerfile.scraping
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./data:/app/data
+    restart: always
+
+  result_service:
+    build:
+      context: ./services/result_service
+      dockerfile: Dockerfile.result
+    ports:
+      - "8001:8001"
+    volumes:
+      - ./data:/app/data
+    restart: always
