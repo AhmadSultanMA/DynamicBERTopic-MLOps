@@ -65,8 +65,8 @@
 6. **Run Services Locally**
    
     ```bash
-    uvicorn src.services.scraping_service.main:app --reload --port 8000
-    uvicorn src.services.result_service.main:app --reload --port 8001
+    uvicorn src.services.scraping_service.scraping_service:app --reload --port 8000
+    uvicorn src.services.result_service.result_service:app --reload --port 8001
     ```
 
 7. **Run Docker Compose**
