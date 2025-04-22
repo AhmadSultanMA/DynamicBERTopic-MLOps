@@ -12,13 +12,15 @@ app = FastAPI()
 
 BASE_URL = os.getenv("BASE_URL")
 SCRAPED_FILE = "data/scrape_data.json"
+PROGRESS_FILE = "data/progress.json"
 
 @app.get("/scrape")
 def scrape_ui_library(target_total: int = 1000, step: int = 10):
     headers = {"User-Agent": "Mozilla/5.0"}
-    results = []
-    current_no = 1
-    start = 0
+    results = load_json(SCRAPED_FILE)  # Load existing results if any
+    progress = load_json(PROGRESS_FILE)
+    current_no = len(results) + 1
+    start = progress.get("start", 0)
 
     while len(results) < target_total:
         url = f"{BASE_URL}&start={start}&lokasi=lokal"
@@ -28,6 +30,7 @@ def scrape_ui_library(target_total: int = 1000, step: int = 10):
         except requests.exceptions.RequestException as e:
             print(f"Gagal mengambil halaman {url}: {str(e)}")
             start += step
+            update_progress(PROGRESS_FILE, start)
             time.sleep(1)
             continue
 
@@ -82,7 +85,6 @@ def scrape_ui_library(target_total: int = 1000, step: int = 10):
                 results.append(result)
                 current_no += 1
 
-                # Auto-save setiap 50 data
                 if len(results) % 50 == 0:
                     save_to_json(results, SCRAPED_FILE)
                     print(f"Auto-saved {len(results)} data to {SCRAPED_FILE}")
@@ -94,17 +96,34 @@ def scrape_ui_library(target_total: int = 1000, step: int = 10):
                 print(f"Error parsing item: {e}")
                 continue
 
+        # Di sini baru kita update progress-nya setelah start naik
         start += step
+        update_progress(PROGRESS_FILE, start)
         time.sleep(0.5)
 
-    # Final save
     save_to_json(results, SCRAPED_FILE)
-    return {"message": f"{len(results)} data berhasil disimpan di {SCRAPED_FILE}"}
-
-
+    update_progress(PROGRESS_FILE, start)
+    return {
+        "message": f"{len(results)} data berhasil disimpan di {SCRAPED_FILE}",
+        "next_start": start
+    }
 
 
 def save_to_json(data, filename):
     os.makedirs(os.path.dirname(filename), exist_ok=True)
     with open(filename, mode='w', encoding='utf-8') as f:
         json.dump(data, f, indent=2, ensure_ascii=False)
+
+
+def load_json(filename):
+    if os.path.exists(filename):
+        try:
+            with open(filename, encoding='utf-8') as f:
+                return json.load(f)
+        except Exception:
+            return {}
+    return [] if filename == SCRAPED_FILE else {}
+
+
+def update_progress(filename, start):
+    save_to_json({"start": start}, filename)
