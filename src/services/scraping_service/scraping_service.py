@@ -15,7 +15,7 @@ SCRAPED_FILE = "data/scrape_data.json"
 PROGRESS_FILE = "data/progress.json"
 
 @app.get("/scrape")
-def scrape_ui_library(target_total: int = 1000, step: int = 10):
+def scrape_ui_library(target_total: int = 10000, step: int = 10):
     headers = {"User-Agent": "Mozilla/5.0"}
     results = load_json(SCRAPED_FILE)  # Load existing results if any
     progress = load_json(PROGRESS_FILE)
