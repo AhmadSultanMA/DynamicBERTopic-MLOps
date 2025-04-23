@@ -1,0 +1,6 @@
+artifact_location: file:///D:/kulyeah/git/DynamicBERTopic-MLOps/model/mlruns/753252904737609591
+creation_time: 1745418013711
+experiment_id: '753252904737609591'
+last_update_time: 1745418013711
+lifecycle_stage: active
+name: BERTopic Experiment

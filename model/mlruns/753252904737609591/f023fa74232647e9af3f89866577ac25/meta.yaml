@@ -1,0 +1,15 @@
+artifact_uri: file:///D:/kulyeah/git/DynamicBERTopic-MLOps/model/mlruns/753252904737609591/f023fa74232647e9af3f89866577ac25/artifacts
+end_time: 1745418302684
+entry_point_name: ''
+experiment_id: '753252904737609591'
+lifecycle_stage: active
+run_id: f023fa74232647e9af3f89866577ac25
+run_name: righteous-vole-641
+run_uuid: f023fa74232647e9af3f89866577ac25
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1745418014097
+status: 3
+tags: []
+user_id: OMEN
