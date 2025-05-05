@@ -14,13 +14,25 @@
 
 ```
 ├───data
-│   ├───cleaned # Preprocessing results after data cleaning
-│   └───scrape # Scraping results in CSV format
-├───pipeline
-└───script
-    ├───📜 scraping.py      # Script for data scraping
-    ├───📜 preprocessing.py # Script for data cleaning and processing
-    ├───📜 EDA.py           # Script for Exploratory Data Analysis (EDA)
+│   ├───cleaned                 # Preprocessing results after data cleaning 
+│   └───scrape                  # Scraping results in CSV format 
+├───model                       # Model-related artifacts 
+├───pipeline                    # Pipeline for end-to-end automation 
+├───src
+|   ├───services 
+|   │   ├───scraping_service    # Service to handle scraping processes 
+|   |   └───result_service      # Service to return preprocessed results 
+|   ├───EDA.py                  # Script for Exploratory Data Analysis (EDA) 
+|   ├───preprocessing.py        # Script for data cleaning and processing 
+│   └───scraping.py             # Script for data scraping 
+├───docker-compose.yml          # Compose file for running multiple services 
+├───requirements.txt            # Python dependencies 
+└───README.md
+
+markdown
+Salin
+Edit
+
 
 ```
 
@@ -55,7 +67,19 @@
     ```bash
     python script/EDA.py
     ```
+    
+6. **Run Services Locally**
+   
+    ```bash
+    uvicorn src.services.scraping_service.main:app --reload --port 8000
+    uvicorn src.services.result_service.main:app --reload --port 8001
+    ```
 
+6. **Run Docker Compose**
+   
+    ```bash
+    docker-compose up --build
+    ```  
 ## 📌 Feature
 
 ✅ Scraping UI library collections
@@ -65,3 +89,11 @@
 ✅ Storing data in CSV format
 
 ✅ Exploratory Data Analysis (EDA) to identify patterns and data distribution
+ 
+✅ Build API using FastAPI for both scraping and result retrieval
+
+✅ Test API locally using Postman
+
+✅ Containerize the APIs using Docker & Docker Compose
+
+✅ Model training and evaluation with coherence score
