@@ -19,15 +19,20 @@
 ├───model                       # Model-related artifacts 
 ├───pipeline                    # Pipeline for end-to-end automation 
 ├───src
-|   ├───📜services 
+|   ├───services 
 |   │   ├───scraping_service    # Service to handle scraping processes 
 |   |   └───result_service      # Service to return preprocessed results 
-|   ├───📜EDA.py                  # Script for Exploratory Data Analysis (EDA) 
-|   ├───📜preprocessing.py        # Script for data cleaning and processing 
-│   └───📜scraping.py             # Script for data scraping 
+|   ├───EDA.py                  # Script for Exploratory Data Analysis (EDA) 
+|   ├───preprocessing.py        # Script for data cleaning and processing 
+│   └───scraping.py             # Script for data scraping 
 ├───docker-compose.yml          # Compose file for running multiple services 
 ├───requirements.txt            # Python dependencies 
 └───README.md
+
+markdown
+Salin
+Edit
+
 ```
 
 ## 🔧 How to Use
@@ -73,8 +78,13 @@
    
     ```bash
     docker-compose up --build
-    ```  
+    ```
 
+6. **Run Docker Compose**
+   
+    ```bash
+    docker-compose up --build
+    ```  
 ## 📌 Feature
 
 ✅ Scraping UI library collections
