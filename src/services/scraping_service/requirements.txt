@@ -3,3 +3,6 @@ fastapi
 requests
 pandas
 beautifulsoup4
+python-dotenv
+prometheus-fastapi-instrumentator
+
