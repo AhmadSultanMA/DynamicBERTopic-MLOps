@@ -1,8 +1,11 @@
 import os
 import pandas as pd
 from fastapi import FastAPI
+from prometheus_fastapi_instrumentator import Instrumentator
 
 app = FastAPI()
+
+Instrumentator().instrument(app).expose(app)
 
 # Dapatkan direktori absolut tempat result_service.py berada
 base_dir = os.path.dirname(os.path.abspath(__file__))

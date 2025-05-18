@@ -5,10 +5,13 @@ import time
 import json
 from bs4 import BeautifulSoup
 from dotenv import load_dotenv
+from prometheus_fastapi_instrumentator import Instrumentator
 
 load_dotenv()
 
 app = FastAPI()
+
+Instrumentator().instrument(app).expose(app)
 
 BASE_URL = os.getenv("BASE_URL")
 SCRAPED_FILE = "data/scrape_data.json"
