@@ -1,7 +1,7 @@
 services:
   scraping_service:
     build:
-      context: ./services/scraping_service
+      context: ./src/services/scraping_service
       dockerfile: Dockerfile.scraping
     ports:
       - "8000:8000"
@@ -11,7 +11,7 @@ services:
 
   result_service:
     build:
-      context: ./services/result_service
+      context: ./src/services/result_service
       dockerfile: Dockerfile.result
     ports:
       - "8001:8001"
