@@ -102,3 +102,26 @@ Edit
 ✅ Containerize the APIs using Docker & Docker Compose
 
 ✅ Model training and evaluation with coherence score
+
+## 📊 Monitoring Implementation with Grafana & Prometheus
+
+### 🔧 Services Monitored
+- scraping_service (port 8000)
+- result_service (port 8001)
+
+### 🧰 Tools
+- Prometheus
+- Grafana
+- Prometheus FastAPI Instrumentator
+
+### 📈 Grafana Dashboards
+Metrics shown:
+- Total HTTP requests
+- Response time per endpoint
+- Error rate
+- Container uptime
+
+### 🔗 Access URLs
+- Prometheus: http://localhost:9090
+- Grafana: http://localhost:3000
+- Metrics: http://localhost:8000/metrics, http://localhost:8001/metrics
