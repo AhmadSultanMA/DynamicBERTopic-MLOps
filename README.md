@@ -21,14 +21,14 @@
 
 ├── data
 │   ├── cleaned                              # Hasil preprocessing setelah pembersihan data
-│   └── scrape\_data.json                     # Hasil scraping dalam format JSON
+│   └── scrape_data.json                     # Hasil scraping dalam format JSON
 ├── monitoring                               # File konfigurasi Prometheus (prometheus.yml)
 ├── pipeline                                 # Pipeline untuk otomasi end-to-end
 ├── src
 │   └── services
-│       ├── scraping\_service                 # Service untuk menangani proses scraping
-│       ├── result\_service                   # Service untuk menampilkan hasil data
-│       └── preprocess\_training\_service      # Service untuk preprocessing dan training model
+│       ├── scraping_service                 # Service untuk menangani proses scraping
+│       ├── result_service                   # Service untuk menampilkan hasil data
+│       └── preprocess_training_service      # Service untuk preprocessing dan training model
 ├── docker-compose.yml                       # Compose file untuk menjalankan semua service
 └── README.md
 
