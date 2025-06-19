@@ -28,6 +28,7 @@ services:
     volumes:
       - ./data:/app/data
       - ./pipeline:/app/pipeline
+      - ./mlruns:/app/mlruns
     restart: "no"
 
   prometheus:
