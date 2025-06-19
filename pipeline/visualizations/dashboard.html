@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>BERTopic Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav {
+            background: #333;
+            padding: 1rem;
+            color: white;
+        }
+
+        nav a {
+            color: white;
+            margin-right: 2rem;
+            text-decoration: none;
+        }
+
+        section {
+            padding: 2rem;
+        }
+
+        iframe {
+            width: 100%;
+            height: 600px;
+            border: none;
+            margin-bottom: 2rem;
+        }
+
+        h2 {
+            border-bottom: 2px solid #ddd;
+            padding-bottom: .5rem;
+        }
+
+        img {
+            display: block;
+            margin: 0 auto 2rem auto;
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <strong>BERTopic Dashboard</strong> |
+        <a href="#topics">Topics</a>
+        <a href="#bar">Bar Chart</a>
+        <a href="#hierarchy">Hierarchy</a>
+        <a href="#heatmap">Heatmap</a>
+        <a href="#wordcloud">Word Cloud</a>
+    </nav>
+
+    <section id="topics">
+        <h2>🔎 Topic Visualization</h2>
+        <iframe src="topics.html"></iframe>
+    </section>
+
+    <section id="bar">
+        <h2>📊 Top 10 Topic Bar Chart</h2>
+        <iframe src="bar_chart.html"></iframe>
+    </section>
+
+    <section id="hierarchy">
+        <h2>🌲 Topic Hierarchy</h2>
+        <iframe src="hierarchy.html"></iframe>
+    </section>
+
+    <section id="heatmap">
+        <h2>🔥 Topic Similarity Heatmap</h2>
+        <iframe src="heatmap.html"></iframe>
+    </section>
+
+    <section id="wordcloud">
+        <h2>☁️ Word Cloud</h2>
+        <img src="cloud.png" alt="Word Cloud">
+    </section>
+
+</body>
+
+</html>
