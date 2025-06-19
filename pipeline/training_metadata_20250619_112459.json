@@ -1,0 +1,7 @@
+{
+  "timestamp": "20250619_112459",
+  "num_documents": 1000,
+  "num_topics": 10,
+  "model_path": "pipeline/bertopic_model_20250619_112459",
+  "data_source": "/app/data/scrape_data.json"
+}

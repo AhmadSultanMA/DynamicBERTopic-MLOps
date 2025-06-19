@@ -19,6 +19,17 @@ services:
       - ./data:/app/data
     restart: always
 
+  preprocessing_training_service:
+    build:
+      context: ./src/services/preprocessing_training_service
+      dockerfile: Dockerfile.preprocessing_training
+    ports:
+      - "8002:8002"
+    volumes:
+      - ./data:/app/data
+      - ./pipeline:/app/pipeline
+    restart: "no"
+
   prometheus:
     image: prom/prometheus
     volumes:
