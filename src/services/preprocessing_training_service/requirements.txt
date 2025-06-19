@@ -9,3 +9,4 @@ umap-learn>=0.5.0
 hdbscan>=0.8.0
 flask>=2.0.0
 plotly>=5.0.0
+gensim>=4.3.2

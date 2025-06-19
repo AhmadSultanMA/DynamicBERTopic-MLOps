@@ -6,6 +6,8 @@ from Sastrawi.StopWordRemover.StopWordRemoverFactory import StopWordRemoverFacto
 import nltk
 from datetime import datetime
 import mlflow
+from gensim.models.coherencemodel import CoherenceModel
+from gensim.corpora.dictionary import Dictionary
 
 print("=== Mulai proses training BERTopic dengan MLflow ===")
 
@@ -49,6 +51,26 @@ def validate_data(df):
     if len(valid_docs) < 10:
         raise ValueError(f"Dokumen terlalu sedikit untuk training: {len(valid_docs)}")
     return True
+
+def compute_coherence_score(model, documents, topics, top_n_words=10):
+    """
+    Menghitung coherence score untuk topik yang dihasilkan.
+    """
+    # Ambil top-n kata dari setiap topik
+    topic_words = [ [word for word, _ in model.get_topic(topic_id)[:top_n_words]] for topic_id in range(len(topics)) ]
+    # Buat dictionary dan corpus
+    texts = [doc.split() for doc in documents]
+    dictionary = Dictionary(texts)
+    corpus = [dictionary.doc2bow(text) for text in texts]
+    # Hitung coherence
+    coherence_model = CoherenceModel(
+        topics=topic_words,
+        texts=texts,
+        dictionary=dictionary,
+        coherence='c_v'
+    )
+    coherence_score = coherence_model.get_coherence()
+    return coherence_score
 
 def main():
     os.makedirs("pipeline", exist_ok=True)
@@ -114,6 +136,10 @@ def main():
             topic_info = topic_model.get_topic_info()
             print(f"Topic distribution:\n{topic_info.head()}")
 
+            # Hitung coherence score
+            coherence_score = compute_coherence_score(topic_model, documents, topics)
+            print(f"Coherence score: {coherence_score:.4f}")
+
             timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
             model_path = f"pipeline/bertopic_model_{timestamp}"
             topic_model.save(model_path)
@@ -124,7 +150,8 @@ def main():
                 "num_documents": len(documents),
                 "num_topics": num_topics,
                 "model_path": model_path,
-                "data_source": json_path
+                "data_source": json_path,
+                "coherence_score": coherence_score
             }
 
             with open(f"pipeline/training_metadata_{timestamp}.json", "w", encoding="utf-8") as f:
@@ -132,13 +159,14 @@ def main():
 
             with open("pipeline/train_log.txt", "a", encoding="utf-8") as logf:
                 logf.write(f"{timestamp}: Trained BERTopic on {len(documents)} documents, "
-                          f"{num_topics} topics. Model: {model_path}\n")
+                          f"{num_topics} topics. Model: {model_path}, Coherence: {coherence_score:.4f}\n")
 
             # 💡 Log ke MLflow
             mlflow.log_param("timestamp", timestamp)
             mlflow.log_param("num_documents", len(documents))
             mlflow.log_param("num_topics", num_topics)
             mlflow.log_param("model_path", model_path)
+            mlflow.log_param("coherence_score", coherence_score)
             mlflow.log_artifact(f"pipeline/training_metadata_{timestamp}.json")
             mlflow.log_artifact("pipeline/train_log.txt")
             mlflow.log_artifacts(model_path, artifact_path="model")
