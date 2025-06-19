@@ -1,5 +1,0 @@
-uvicorn
-fastapi
-requests
-pandas
-beautifulsoup4
